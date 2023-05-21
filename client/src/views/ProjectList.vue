@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!--<Navigation />-->
     <h2>Project List</h2>
     <ul>
       <li v-for="project in projects" :key="project._id">
@@ -13,7 +14,11 @@
 </template>
 
 <script>
+//import Navigation from "../components/Navigation.vue";
 export default {
+  components: {
+    //Navigation,
+  },
   data() {
     return {
       projects: [],

@@ -90,4 +90,39 @@ router.post("/login", async (req, res) => {
 
 })
 
+// Route to fetch all user names
+router.get('/find', async (req, res) => {
+    try {
+      const users = await User.find({}, 'name'); // Fetch only the "name" field
+      res.json(users);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Failed to fetch user names' });
+    }
+  });
+
+// Define the /api/user/me route
+router.get('/api/user/me', async (req, res) => {
+    try {
+      const auth = useAuthStore();
+      
+      // Check if the user is authenticated
+      if (!auth.isAuthenticated) {
+        return res.status(401).json({ message: 'User not authenticated' });
+      }
+      
+      // Get the authenticated user's ID
+      const userId = auth.user.id;
+  
+      // Fetch the user data from MongoDB based on the user ID
+      const user = await User.findById(userId);
+  
+      // Return the user data as JSON response
+      res.json({ user });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server error' });
+    }
+  });
+
 module.exports = router;

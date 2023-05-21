@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Navigation />
     <h2>Create Project</h2>
     <form @submit.prevent="createProject">
       <!-- Step 1 -->
@@ -53,10 +54,12 @@
 
 <script>
 import Datepicker from "vue3-datepicker";
+import Navigation from "../components/Navigation.vue";
 
 export default {
   components: {
     Datepicker,
+    Navigation,
   },
   data() {
     return {

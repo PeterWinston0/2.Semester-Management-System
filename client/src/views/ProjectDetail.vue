@@ -1,6 +1,7 @@
 
 <template>
   <div>
+    <Navigation />
     <h2>{{ title }}</h2>
 
     <button @click="redirectToProjectSettings">Go to Project Settings</button>
@@ -76,10 +77,12 @@ import { ref, onMounted, nextTick } from "vue";
 import { useRouter } from 'vue-router';
 import Sortable from "sortablejs";
 import ProjectSettings from "./ProjectSettings.vue";
+import Navigation from "../components/Navigation.vue";
 
 export default {
   components: {
-    ProjectSettings
+    ProjectSettings,
+    Navigation,
   },
   data() {
     return {

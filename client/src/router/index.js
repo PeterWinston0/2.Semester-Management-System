@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { useAuthStore } from '../stores/auth';
 import ProjectSettings from '../views/ProjectSettings.vue'; // Import the ProjectSettings component
+import UserList from '../views/UserList.vue'; // Import the ProjectSettings component
 
 // Define the routes for your application
 const routes = [
@@ -17,6 +18,11 @@ const routes = [
     meta: { requiresUnauth: true },
   },
   {
+    path: '/registration',
+    name: 'Registration',
+    component: () => import('../views/Registration.vue'),
+  },
+  {
     path: '/dashboard',
     name: 'Dashboard',
     component: () => import('../views/Dashboard.vue'),
@@ -28,7 +34,8 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (About.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import('../views/CreateProject.vue')
+    component: () => import('../views/CreateProject.vue'),
+    meta: { requiresAuth: true },
   },
   {
     path: '/list',
@@ -36,17 +43,25 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (About.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import('../views/ProjectList.vue')
+    component: () => import('../views/ProjectList.vue'),
+    meta: { requiresAuth: true },
   },
   {
     path: '/:id',
     name: 'detail',
-    component: () => import('../views/ProjectDetail.vue')
+    component: () => import('../views/ProjectDetail.vue'),
+    meta: { requiresAuth: true },
   },
   {
     path: '/:id/settings',
     name: 'ProjectSettings',
     component: ProjectSettings,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: '/userlist',
+    name: 'userlist',
+    component: UserList,
   },
 ];
 
