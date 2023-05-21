@@ -55,6 +55,7 @@
 <script>
 import Datepicker from "vue3-datepicker";
 import Navigation from "../components/Navigation.vue";
+import { useAuthStore } from "@/stores/auth";
 
 export default {
   components: {
@@ -72,6 +73,7 @@ export default {
         dropbox: "",
         github: "",
         techs: [],
+        userId: null, // Add userId field to the newProject data
       },
       newTech: "",
       successMessage: "",
